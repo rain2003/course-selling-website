@@ -24,7 +24,7 @@ const authenticateJwt = (req, res, next) => {
     jwt.verify(token, secretKey, (err, user) => {
       if (err) {
         return res.sendStatus(403);
-      }
+      } 
 
       req.user = user;
       next();
@@ -33,6 +33,12 @@ const authenticateJwt = (req, res, next) => {
     res.sendStatus(401);
   }
 };
+
+app.get('/admin/me' , authenticateJwt , (req,res)=>{
+  res.json({
+    username : req.user.username
+  })
+})
 
 app.post('/admin/signup', (req, res) => {
   const admin = req.body;

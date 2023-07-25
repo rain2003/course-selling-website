@@ -55,6 +55,7 @@ function Register() {
                 }
             }).then((res)=>{
                 res.json().then((data)=>{
+                    window.location = "/"
                     localStorage.setItem("token" ,data.token)
                 })
             })
