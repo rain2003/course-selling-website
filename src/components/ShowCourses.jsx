@@ -30,24 +30,36 @@ function ShowCourses() {
     //         Message: {todo.description}
     // and set it in the courses state variable.
     return (
-        <div>
-            <h1>Available Courses</h1>
+        <div >
+            <h2>Available Courses</h2>
+            <div style={{
+                display : "flex",
+                flexWrap : "wrap",
+                justifyContent : 'center'
+            }}>
             {courses.map((course, index) => (
             <Course key={index} course={course} />
         ))}
+            </div>
         </div>
     )
       
 }
-function Course(props){
+ function Course(props){
     return <Card   style={{
         border : "2px solid black",
         width : 300,
         margin : 10,
-        height : 200
+        height : 300,
     }}>
-        <Typography>{props.course.title}</Typography>
-        <Typography>{props.course.description}</Typography>
+        <div>
+        <Typography textAlign={"center"} variant="h5" >{props.course.title}</Typography>
+        <Typography textAlign={"center"} variant="subtitle1" >{props.course.description}</Typography>
+        <img src={props.course.imageLink} style={{width : 300}} />
+        </div>
+       
+        
+        
     </Card>
 }
 

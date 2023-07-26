@@ -9,6 +9,7 @@ import Card from '@mui/material/Card';
 function CreateCourse() {
     const [title , setTitle] = useState('');
     const [description , setDescription] = useState('');
+    const [imageLink , setImageLink] = useState('');
 
     return <div>
     <div style={{
@@ -26,10 +27,11 @@ function CreateCourse() {
         height : "250px",
     }}>
     <Card variant="outlined" style={{
-        width : '30%',
+        width : '50%',
         padding: 20,
         display : 'flex',
-        flexDirection : 'column'
+        flexDirection : 'column',
+        height : "300px"
         }}>
             
             <TextField id="outlined-basic" label="Title" variant="outlined" onChange={(e)=>{
@@ -39,7 +41,10 @@ function CreateCourse() {
             <TextField id="outlined-basic" label="Description" variant="outlined" onChange={(e)=>{
                 setDescription(e.target.value);
             }}/>
-        <br />
+            <br />
+        <TextField id="outlined-basic" label="imageLink" variant="outlined" onChange={(e)=>{
+               setImageLink(e.target.value);
+            }}/>
         
         <Button variant="contained" style={{
             marginTop : '30px',
@@ -51,13 +56,17 @@ function CreateCourse() {
                 body : JSON.stringify({
                     title : title,
                     description : description,
-                    imageLink : "",
+                    imageLink : imageLink,
                     published : true
                 }),
                 headers : {
                     "Content-type" : "application/json",
                     "Authorization" : "Bearer " + localStorage.getItem("token")
                 }
+            }).then((res)=>{
+                res.json().then((data)=>{
+                    alert("course has been added")
+                })
             })
         }}
         >ADD</Button>

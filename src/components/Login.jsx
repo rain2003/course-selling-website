@@ -57,6 +57,7 @@ function Login() {
                 }).then((res)=>{
                     res.json().then((data)=>{
                         localStorage.setItem("token" ,data.token)
+                        window.location = "/"
                     })
                 })
             }}
