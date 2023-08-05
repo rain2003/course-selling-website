@@ -4,22 +4,22 @@ import { useEffect } from "react";
 import { Card, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import axios from "axios";
 // import { Course } from "./ShowCourses";
 
 function Course(){
     const [courses , setCourses] = useState([]);
     let {courseId} = useParams();
     useEffect(()=>{
-        fetch("http://localhost:3000/admin/courses", {
-            method : "GET",
-            headers : {
-                "Authorization" : "Bearer " + localStorage.getItem("token")
-            }
-        }).then((res)=>{
-            res.json().then((data)=>{
-                setCourses(data.courses);
+        const fetch = async()=>{
+            const res = await axios.get("http://localhost:3000/admin/courses",{
+                headers : {
+                    "Authorization" : "Bearer " + localStorage.getItem("token")
+                }
             })
-        })
+            setCourses(res.data.courses);
+        }
+        fetch();
     },[])
  
     let coursedata= null;

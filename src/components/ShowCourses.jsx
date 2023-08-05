@@ -3,32 +3,22 @@
 /* eslint-disable no-unused-vars */
 import { Card, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function ShowCourses() {
     const [courses, setCourses] = useState([]);
 
     useEffect(()=>{
-    fetch("http://localhost:3000/admin/courses", {
-        method : "GET",
-        headers : {
-            "Authorization" : "Bearer " + localStorage.getItem("token")
+        const fetch = async()=>{
+            const res = await axios.get("http://localhost:3000/admin/courses",{
+            headers : {
+                "Authorization" : "Bearer " + localStorage.getItem("token")
+            }})
+            setCourses(res.data.courses)
         }
-    }).then((res)=>{
-        res.json().then((data)=>{
-            setCourses(data.courses);
-        })
-    })
+        fetch();
+        
     },[])
-    // Add code to fetch courses from the server
-    // {todos.map((todo, index) => (
-    //     <div key={todo.id} style={{ marginTop: "10px" }}>
-    //       <li>
-    //         Id: {todo.id}
-    //         <br />
-    //         Title: {todo.title}
-    //         <br />
-    //         Message: {todo.description}
-    // and set it in the courses state variable.
     return (
         <div >
             <h2>Available Courses</h2>
