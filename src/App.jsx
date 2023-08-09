@@ -14,6 +14,17 @@ import {
     useRecoilState,
     useRecoilValue,
   } from 'recoil';
+//  Hi @everyone , for this week's assignment you'll 
+// have to create an e-commerce app with an admin dashboard and a user facing 
+// dashboard using Turborepo in a single monorepo. 
+// You'll have to add all the common zod types/TS types 
+// in a common module which both backend and the 2 frontend apps will use. 
+// You'll also have to keep all the 
+// re-usable components (login screen/signup screen/item card for an ecommerce item) in the ui module. 
+// The e-commerce website would be very similar to a 
+// course selling website where people are selling physical items instead of courses
+
+
 // This file shows how you can do routing in React.
 // Try going to /login, /register, /about, /courses on the website and see how the html changes
 // based on the route.
@@ -35,5 +46,6 @@ function App() {
         </RecoilRoot>
     );
 }
+
 
 export default App;
